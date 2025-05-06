@@ -1,0 +1,11 @@
+#!/usr/bin/env ys-0
+
+use ys::taptest: :all
+load: 'hello-world.ys'
+
+test::
+- name: Say Hi!
+  code: hello()
+  want: Hello, World!
+
+done: 1
