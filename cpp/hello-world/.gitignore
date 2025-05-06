@@ -1,0 +1,23 @@
+# Билд-артефакты
+build/
+**/*build*/
+*.sln
+*.vcxproj*
+*.cmake
+CMakeCache.txt
+CMakeFiles/
+Makefile
+
+.cache/
+
+# Бинарники
+*.out
+*.exe
+*.a
+*.so
+*.dll
+
+# Отладка
+*.ilk
+*.pdb
+*.dSYM/
