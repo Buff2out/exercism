@@ -6,6 +6,11 @@ pub struct Clock {
 
 impl Clock {
     pub fn new(hours: i32, minutes: i32) -> Self {
+        let hours_diff = minutes / 60;
+        let hours = hours + hours_diff;
+        let minutes = minutes - 60*hours_diff;
+        let hours_diff = hours / 24_i32;
+        let hours = hours - 24 * hours_diff;
         Clock { hours, minutes }
     }
 
@@ -21,9 +26,9 @@ impl Clock {
     */
 
     pub fn add_minutes(&self, minutes: i32) -> Self {
-        let hours_diff: i32 = (minutes as i32) / 60_i32;
+        let hours_diff: i32 = ((self.minutes + minutes) as i32) / 60_i32;
         let hours = self.hours + hours_diff;
-        let minutes = hours_diff*60 + minutes - 60*hours_diff;
+        let minutes = self.minutes + minutes - 60*hours_diff;
         let hours_diff = hours / 24_i32;
         let hours = hours - 24 * hours_diff;
         Clock { hours, minutes }
