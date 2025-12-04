@@ -11,7 +11,7 @@ pub fn frequency(input: &[&str], worker_count: usize) -> HashMap<char, usize> {
 
     thread::scope(|s| {
         let chunk_size = input.len().div_ceil(worker_count);
-        let mut handles: Vec<_> = input
+        let handles: Vec<_> = input
             .chunks(chunk_size)
             .map(|chunk| {
                 s.spawn(move || {
