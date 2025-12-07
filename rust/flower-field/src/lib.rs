@@ -21,7 +21,7 @@ impl NeighbourCounter for [&str] {
 }
 
 pub fn annotate(garden: &[&str]) -> Vec<String> {
-    if 0 == garden.len() {
+    if garden.is_empty() {
         return vec![];
     }
     (0..garden.len())
