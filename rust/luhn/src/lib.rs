@@ -18,5 +18,5 @@ pub fn is_valid(code: &str) -> bool {
                 (i + 1, sum + added)
             })
         })
-        .map_or(false, |(i, sum)| i > 1 && 0 == sum % 10)
+        .is_some_and(|(i, sum)| i > 1 && 0 == sum % 10)
 }
