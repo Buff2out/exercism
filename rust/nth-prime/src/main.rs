@@ -1,26 +1,15 @@
-pub fn nth(n: u32) -> u32 {
-    let mut num = 1;
-    for _ in 0..=n {
-        loop {
-            num += 1;
-            if is_prime(num as u64) {
-                break;
-            }
-        }
-    }
-    num
+fn main() {
+    let n: u64 = std::env::args().nth(1)
+        .and_then(|s| s.parse().ok())
+        .unwrap_or(35);
+
+    println!("{} -> {}", n, if is_prime(n) { "prime" } else { "composite" });
 }
 
 pub fn is_prime(n: u64) -> bool {
-    if n < 2 {
-        return false;
-    }
-    if n == 2 || n == 3 {
-        return true;
-    }
-    if n % 2 == 0 {
-        return false;
-    }
+    if n < 2 { return false; }
+    if n == 2 || n == 3 { return true; }
+    if n % 2 == 0 { return false; }
 
     let s = (n - 1).trailing_zeros();
     let d = (n - 1) >> s;
@@ -35,6 +24,7 @@ pub fn is_prime(n: u64) -> bool {
     true
 }
 
+// O(1) lookup based on input size
 fn get_witnesses(n: u64) -> &'static [u64] {
     const WITNESSES: &[(u64, &[u64])] = &[
         (2_046, &[2]),
@@ -50,8 +40,7 @@ fn get_witnesses(n: u64) -> &'static [u64] {
         (u64::MAX, &[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37]),
     ];
 
-    WITNESSES
-        .iter()
+    WITNESSES.iter()
         .find(|(limit, _)| *limit >= n)
         .map(|(_, w)| *w)
         .unwrap()
@@ -71,6 +60,8 @@ fn miller_rabin_test(a: u64, d: u64, n: u64, s: u32) -> bool {
     }
     false
 }
+
+// === Math Core ===
 
 #[inline]
 fn mod_mul(a: u64, b: u64, m: u64) -> u64 {
