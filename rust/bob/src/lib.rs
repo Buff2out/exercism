@@ -12,5 +12,5 @@ pub fn reply(message: &str) -> &str {
     if message.ends_with("?") {
         return "Sure.";
     }
-    return "Whatever.";
+    "Whatever."
 }
