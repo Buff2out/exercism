@@ -1,3 +1,17 @@
 pub fn collatz(n: u64) -> Option<u64> {
-    todo!("return Some(x) where x is the number of steps required to reach 1 starting with {n}")
+    let mut counter = 0;
+    let mut n = n;
+    if 0 == n {
+        return None;
+    }
+    while 1 < n {
+        if 0 == n % 2 {
+            n /= 2;
+            counter += 1;
+        } else {
+            n = 3 * n + 1;
+            counter += 1;
+        }
+    }
+    Some(counter)
 }
