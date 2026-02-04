@@ -1,5 +1,5 @@
 {
-  description = "trails-server";
+  description = "exercism";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
