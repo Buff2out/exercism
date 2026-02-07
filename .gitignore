@@ -1,2 +1,5 @@
 */*/.exercism/metadata.json
 
+*/.direnv/
+.envrc
+
